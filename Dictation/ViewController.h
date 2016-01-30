@@ -8,8 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
+#import "Utility.h"
+#import "WMUserDefault.h"
 
+typedef enum : NSUInteger {
+    ViewTypeAdd = 1,
+    ViewTypeEdit,
+} ViewType;
+
+@interface ViewController : UIViewController
 
 @end
 

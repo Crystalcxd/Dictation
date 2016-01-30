@@ -8,6 +8,17 @@
 
 #import "AppDelegate.h"
 
+#import "SliderViewController.h"
+
+#import "LeftViewController.h"
+
+#import "Utility.h"
+#import "WMUserDefault.h"
+
+#import "MusicData.h"
+
+#import <AVOSCloud/AVOSCloud.h>
+
 @interface AppDelegate ()
 
 @end
@@ -17,6 +28,50 @@
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
     // Override point for customization after application launch.
+    
+    [AVOSCloud setApplicationId:@"APtD84WKyTgVkCHKmomGuzSJ-gzGzoHsz"
+                      clientKey:@"XUUVqeMiIzzygws1kFvSXNwW"];
+    
+    [AVAnalytics trackAppOpenedWithLaunchOptions:launchOptions];
+    
+    [[UIApplication sharedApplication] setStatusBarStyle:UIStatusBarStyleLightContent];
+    
+    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
+    // Override point for customization after application launch.
+    
+    [SliderViewController sharedSliderController].mainVCClassName = @"ViewController";
+    
+    [SliderViewController sharedSliderController].LeftVC=[[LeftViewController alloc] init];
+    [SliderViewController sharedSliderController].RightVC=[[UIViewController alloc] init];
+    
+    UINavigationController *controller = [[UINavigationController alloc] initWithRootViewController:[SliderViewController sharedSliderController]];
+    
+    self.window.rootViewController = controller;
+    self.window.backgroundColor = [UIColor whiteColor];
+    [self.window makeKeyAndVisible];
+
+    if (![WMUserDefault arrayForKey:@"DefaultData"]) {
+        NSMutableArray *array = [NSMutableArray array];
+        
+        MusicData *musicData = [[MusicData alloc] init];
+        musicData.musicName = @"丫丫的语文听写朗读样例";
+        musicData.indexName = @"dictation_chinese";
+        musicData.duration = 51;
+        musicData.musicTag = [NSMutableArray arrayWithObjects:@"小学",@"语文", nil];
+        
+        [array addObject:musicData];
+        
+        MusicData *musicDataTwo = [[MusicData alloc] init];
+        musicDataTwo.musicName = @"丫丫的英语听写朗读样例";
+        musicDataTwo.indexName = @"dictation_english";
+        musicDataTwo.duration = 29;
+        musicDataTwo.musicTag = [NSMutableArray arrayWithObjects:@"小学",@"英语", nil];
+        
+        [array addObject:musicDataTwo];
+
+        [WMUserDefault setArray:array forKey:@"DefaultData"];
+    }
+    
     return YES;
 }
 
