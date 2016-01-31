@@ -39,7 +39,7 @@
     
     UIButton * nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    nextBtn.frame = CGRectMake(SCREENWIDTH * 0.5 - 107, SCREENHEIGHT - 228, 215, 48);
+    nextBtn.frame = CGRectMake(SCREENWIDTH * 0.5 - 107, SCREENHEIGHT - 200, 215, 48);
     nextBtn.layer.cornerRadius = 4.0;
     nextBtn.backgroundColor = HexRGB(0x26D1F5);
     [nextBtn.titleLabel setFont:[UIFont systemFontOfSize:18.0]];
@@ -55,7 +55,7 @@
     
     UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
 
-    backBtn.frame = CGRectMake(SCREENWIDTH * 1.5 - 107, SCREENHEIGHT - 228, 215, 48);
+    backBtn.frame = CGRectMake(SCREENWIDTH * 1.5 - 107, SCREENHEIGHT - 200, 215, 48);
     backBtn.layer.cornerRadius = 4.0;
     backBtn.backgroundColor = HexRGB(0x26D1F5);
     [backBtn.titleLabel setFont:[UIFont systemFontOfSize:18.0]];

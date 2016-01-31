@@ -180,6 +180,8 @@ static NSString * const musicIdentifier = @"music";
         [WMUserDefault setArray:self.userArray forKey:@"UserData"];
     }
 
+    [[RBDMuteSwitch sharedInstance] setDelegate:self];
+    [[RBDMuteSwitch sharedInstance] detectMuteSwitch];
     
     [self showPlayView];
 }
@@ -473,6 +475,17 @@ static NSString * const musicIdentifier = @"music";
     
     playBtnTwo.selected = NO;
     playBtn.selected = NO;
+}
+
+- (void)isMuted:(BOOL)muted {
+    if (muted) {
+        UIAlertView *alert = [[UIAlertView alloc] initWithTitle:@"提示" message:@"你的手机处于静音状态，播放功能将无法正常使用" delegate:nil cancelButtonTitle:@"好的" otherButtonTitles:nil, nil];
+        [alert show];
+    }
+    else {
+        NSLog(@"Not Muted");
+    }
+    [[RBDMuteSwitch sharedInstance] setDelegate:nil];
 }
 
 - (void)didReceiveMemoryWarning {

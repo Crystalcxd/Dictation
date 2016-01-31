@@ -136,12 +136,10 @@ static NSString * const musicIdentifier = @"music";
     
     [self.view addSubview:addMusic];
     
-    if ([WMUserDefault intValueForKey:@"lead"] == 0) {
+//    if ([WMUserDefault intValueForKey:@"lead"] == 0) {
         [self addLeadView];
         [WMUserDefault setIntValue:1 forKey:@"lead"];
-    }
-    
-    [[RBDMuteSwitch sharedInstance] setDelegate:self];
+//    }
 }
 
 - (void)addLeadView
@@ -166,7 +164,7 @@ static NSString * const musicIdentifier = @"music";
     
     UIButton * nextBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    nextBtn.frame = CGRectMake(SCREENWIDTH * 0.5 - 107, SCREENHEIGHT - 228, 215, 48);
+    nextBtn.frame = CGRectMake(SCREENWIDTH * 0.5 - 107, SCREENHEIGHT - 200, 215, 48);
     nextBtn.layer.cornerRadius = 4.0;
     nextBtn.backgroundColor = HexRGB(0x26D1F5);
     [nextBtn.titleLabel setFont:[UIFont systemFontOfSize:18.0]];
@@ -182,7 +180,7 @@ static NSString * const musicIdentifier = @"music";
     
     UIButton * backBtn = [UIButton buttonWithType:UIButtonTypeCustom];
     
-    backBtn.frame = CGRectMake(SCREENWIDTH * 1.5 - 107, SCREENHEIGHT - 228, 215, 48);
+    backBtn.frame = CGRectMake(SCREENWIDTH * 1.5 - 107, SCREENHEIGHT - 200, 215, 48);
     backBtn.layer.cornerRadius = 4.0;
     backBtn.backgroundColor = HexRGB(0x26D1F5);
     [backBtn.titleLabel setFont:[UIFont systemFontOfSize:18.0]];
@@ -633,6 +631,7 @@ static NSString * const musicIdentifier = @"music";
         [WMUserDefault setArray:self.userArray forKey:@"UserData"];
     }
 
+    [[RBDMuteSwitch sharedInstance] setDelegate:self];
     [[RBDMuteSwitch sharedInstance] detectMuteSwitch];
     
     [self showPlayView];
@@ -918,6 +917,7 @@ static NSString * const musicIdentifier = @"music";
     else {
         NSLog(@"Not Muted");
     }
+    [[RBDMuteSwitch sharedInstance] setDelegate:nil];
 }
 
 - (void)didReceiveMemoryWarning {

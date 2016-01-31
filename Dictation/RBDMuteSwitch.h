@@ -29,7 +29,6 @@
 
 @interface RBDMuteSwitch : NSObject {
     @private
-    NSObject<RBDMuteSwitchDelegate> *delegate;
     float soundDuration;
     NSTimer *playbackTimer;
 }
@@ -37,7 +36,7 @@
 /**
  Your delegate
  */
-@property (readwrite, retain) NSObject<RBDMuteSwitchDelegate> *delegate;
+@property (readwrite, assign) NSObject<RBDMuteSwitchDelegate> *delegate;
 
 /** Creates a shared instance
  */ 

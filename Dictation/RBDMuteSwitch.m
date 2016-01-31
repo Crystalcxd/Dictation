@@ -12,8 +12,6 @@ static RBDMuteSwitch *_sharedInstance;
 
 @implementation RBDMuteSwitch
 
-@synthesize delegate;
-
 + (RBDMuteSwitch *)sharedInstance
 {
 	if (!_sharedInstance) {
@@ -36,10 +34,10 @@ static RBDMuteSwitch *_sharedInstance;
 //        NSLog(@"playbackComplete >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>\nsoundDuration    %f",soundDuration);
         // If playback is far less than 100ms then we know the device is muted
         if (soundDuration < 0.001) {
-            [delegate isMuted:YES];
+            [self.delegate isMuted:YES];
         }
         else {
-             [delegate isMuted:NO];
+             [self.delegate isMuted:NO];
         }
     }
     [playbackTimer invalidate];
