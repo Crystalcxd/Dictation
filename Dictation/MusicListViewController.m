@@ -389,7 +389,7 @@ static NSString * const musicIdentifier = @"music";
 
     UILabel *timeLabel = [playBG viewWithTag:PlayViewTypeTimeLabel];
     if (timeLabel && [timeLabel isKindOfClass:[UILabel class]]) {
-        timeLabel.text = [NSString stringWithFormat:@"%@%ld:%@%ld",self.time/60 >= 10 ? @"" : @"0",self.time/60,self.time%60 >= 10 ? @"" : @"0",self.time%60];
+        timeLabel.text = [NSString stringWithFormat:@"%@%d:%@%d",self.time/60 >= 10 ? @"" : @"0",self.time/60,self.time%60 >= 10 ? @"" : @"0",self.time%60];
     }
     
     progress.progressValue = self.time * 1.0 /self.audioPlayer.duration;

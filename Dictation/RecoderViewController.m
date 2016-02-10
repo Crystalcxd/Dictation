@@ -224,7 +224,7 @@
 
 -(void)audioPowerChange{
     self.time ++;
-    self.timeLabel.text = [NSString stringWithFormat:@"%@%ld:%@%ld",self.time/60 >= 10 ? @"" : @"0",self.time/60,self.time%60 >= 10 ? @"" : @"0",self.time%60];
+    self.timeLabel.text = [NSString stringWithFormat:@"%@%d:%@%d",self.time/60 >= 10 ? @"" : @"0",self.time/60,self.time%60 >= 10 ? @"" : @"0",self.time%60];
 }
 
 - (void)didReceiveMemoryWarning {

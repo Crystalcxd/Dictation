@@ -136,10 +136,10 @@ static NSString * const musicIdentifier = @"music";
     
     [self.view addSubview:addMusic];
     
-//    if ([WMUserDefault intValueForKey:@"lead"] == 0) {
+    if ([WMUserDefault intValueForKey:@"lead"] == 0) {
         [self addLeadView];
         [WMUserDefault setIntValue:1 forKey:@"lead"];
-//    }
+    }
 }
 
 - (void)addLeadView
@@ -282,7 +282,7 @@ static NSString * const musicIdentifier = @"music";
     textField.layer.cornerRadius = 4.0;
     textField.textColor = HexRGB(0xF1639E);
     textField.font = [UIFont systemFontOfSize:14.0];
-    textField.text = [NSString stringWithFormat:@"%@_%ld",timeString,self.userArray.count + 1];
+    textField.text = [NSString stringWithFormat:@"%@_%u",timeString,self.userArray.count + 1];
     if (self.type == ViewTypeEdit) {
         MusicData *data = nil;
         if (self.currentIndexPath.section == 1) {
@@ -793,7 +793,7 @@ static NSString * const musicIdentifier = @"music";
     UILabel *playLabel = [playBG viewWithTag:PlayViewTypePlayLabel];
     UIImageView *playImageView = [playBG viewWithTag:PlayViewTypePlayImageView];
     UIButton *playBtn = [playBG viewWithTag:PlayViewTypePlayBtn];
-    UILabel *timeLabel = [playBG viewWithTag:PlayViewTypeTimeLabel];
+
     SNCircleProgressView *progress = [playBG viewWithTag:PlayViewTypeProgress];
 
     if (btn.selected) {
@@ -826,7 +826,7 @@ static NSString * const musicIdentifier = @"music";
 
     UILabel *timeLabel = [playBG viewWithTag:PlayViewTypeTimeLabel];
     if (timeLabel && [timeLabel isKindOfClass:[UILabel class]]) {
-        timeLabel.text = [NSString stringWithFormat:@"%@%ld:%@%ld",self.time/60 >= 10 ? @"" : @"0",self.time/60,self.time%60 >= 10 ? @"" : @"0",self.time%60];
+        timeLabel.text = [NSString stringWithFormat:@"%@%d:%@%d",self.time/60 >= 10 ? @"" : @"0",self.time/60,self.time%60 >= 10 ? @"" : @"0",self.time%60];
     }
     
     progress.progressValue = self.time * 1.0 /self.audioPlayer.duration;

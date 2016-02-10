@@ -90,7 +90,7 @@
 {
     NSString *str = @"";
     
-    str = [NSString stringWithFormat:@"%ld'%ld''",time/60,time%60];
+    str = [NSString stringWithFormat:@"%d'%d''",time/60,time%60];
     
     return str;
 }
