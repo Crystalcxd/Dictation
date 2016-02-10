@@ -15,7 +15,7 @@
 @interface MusicCell : UITableViewCell
 
 @property (nonatomic, assign) id<MusicCellDelegate>delegate;
-@property (nonatomic, assign) NSIndexPath *indexPath;
+@property (nonatomic, strong) NSIndexPath *indexPath;
 
 - (void)configCellWith:(id)objc;
 
