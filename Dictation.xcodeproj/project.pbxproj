@@ -7,7 +7,6 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		4C1679371C3BC26500D64DD7 /* AVOSCloud.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1679361C3BC26500D64DD7 /* AVOSCloud.framework */; };
 		4C1679391C3BC29500D64DD7 /* SystemConfiguration.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C1679381C3BC29500D64DD7 /* SystemConfiguration.framework */; };
 		4C16793B1C3BC2A300D64DD7 /* MobileCoreServices.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16793A1C3BC2A300D64DD7 /* MobileCoreServices.framework */; };
 		4C16793D1C3BC2AE00D64DD7 /* CoreTelephony.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 4C16793C1C3BC2AE00D64DD7 /* CoreTelephony.framework */; };
@@ -51,6 +50,7 @@
 		4CC0F3FE1C3AA28A00B7FE8F /* LeftViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CC0F3FD1C3AA28A00B7FE8F /* LeftViewController.m */; };
 		4CCF05F11C3263E400DE99D2 /* MusicCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 4CCF05F01C3263E400DE99D2 /* MusicCell.m */; };
 		4CCF05F31C3267FD00DE99D2 /* icn_play@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 4CCF05F21C3267FD00DE99D2 /* icn_play@2x.png */; };
+		89DD1C5F854AC46D920FC819 /* Pods_Dictation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = E60101D669102350A3D80FA9 /* Pods_Dictation.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -71,7 +71,6 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
-		4C1679361C3BC26500D64DD7 /* AVOSCloud.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; path = AVOSCloud.framework; sourceTree = "<group>"; };
 		4C1679381C3BC29500D64DD7 /* SystemConfiguration.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = SystemConfiguration.framework; path = System/Library/Frameworks/SystemConfiguration.framework; sourceTree = SDKROOT; };
 		4C16793A1C3BC2A300D64DD7 /* MobileCoreServices.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = MobileCoreServices.framework; path = System/Library/Frameworks/MobileCoreServices.framework; sourceTree = SDKROOT; };
 		4C16793C1C3BC2AE00D64DD7 /* CoreTelephony.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CoreTelephony.framework; path = System/Library/Frameworks/CoreTelephony.framework; sourceTree = SDKROOT; };
@@ -136,6 +135,9 @@
 		4CCF05EF1C3263E400DE99D2 /* MusicCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MusicCell.h; sourceTree = "<group>"; };
 		4CCF05F01C3263E400DE99D2 /* MusicCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = MusicCell.m; sourceTree = "<group>"; };
 		4CCF05F21C3267FD00DE99D2 /* icn_play@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icn_play@2x.png"; sourceTree = "<group>"; };
+		7051E352F4C24E381896C23E /* Pods-Dictation.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictation.release.xcconfig"; path = "Pods/Target Support Files/Pods-Dictation/Pods-Dictation.release.xcconfig"; sourceTree = "<group>"; };
+		E5D89B5EA215E59DFB0C161A /* Pods-Dictation.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Dictation.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Dictation/Pods-Dictation.debug.xcconfig"; sourceTree = "<group>"; };
+		E60101D669102350A3D80FA9 /* Pods_Dictation.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Dictation.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,7 +150,7 @@
 				4C16793D1C3BC2AE00D64DD7 /* CoreTelephony.framework in Frameworks */,
 				4C16793B1C3BC2A300D64DD7 /* MobileCoreServices.framework in Frameworks */,
 				4C1679391C3BC29500D64DD7 /* SystemConfiguration.framework in Frameworks */,
-				4C1679371C3BC26500D64DD7 /* AVOSCloud.framework in Frameworks */,
+				89DD1C5F854AC46D920FC819 /* Pods_Dictation.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -177,11 +179,12 @@
 				4C16793C1C3BC2AE00D64DD7 /* CoreTelephony.framework */,
 				4C16793A1C3BC2A300D64DD7 /* MobileCoreServices.framework */,
 				4C1679381C3BC29500D64DD7 /* SystemConfiguration.framework */,
-				4C1679361C3BC26500D64DD7 /* AVOSCloud.framework */,
 				4C31CE551C302F1800C84AC4 /* Dictation */,
 				4C31CE6F1C302F1800C84AC4 /* DictationTests */,
 				4C31CE7A1C302F1900C84AC4 /* DictationUITests */,
 				4C31CE541C302F1800C84AC4 /* Products */,
+				BCB61BCA5F07EF6D611BCE6B /* Pods */,
+				5B42AC5BE5DFA54473A49DEA /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -320,6 +323,23 @@
 			path = DataModel;
 			sourceTree = "<group>";
 		};
+		5B42AC5BE5DFA54473A49DEA /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				E60101D669102350A3D80FA9 /* Pods_Dictation.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		BCB61BCA5F07EF6D611BCE6B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				E5D89B5EA215E59DFB0C161A /* Pods-Dictation.debug.xcconfig */,
+				7051E352F4C24E381896C23E /* Pods-Dictation.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -327,9 +347,12 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 4C31CE801C302F1900C84AC4 /* Build configuration list for PBXNativeTarget "Dictation" */;
 			buildPhases = (
+				19EB2B18054B77937715898B /* [CP] Check Pods Manifest.lock */,
 				4C31CE4F1C302F1800C84AC4 /* Sources */,
 				4C31CE501C302F1800C84AC4 /* Frameworks */,
 				4C31CE511C302F1800C84AC4 /* Resources */,
+				529F023C64A8D4E033E7B15A /* [CP] Embed Pods Frameworks */,
+				3E5C8406BCE9858F58380BDC /* [CP] Copy Pods Resources */,
 			);
 			buildRules = (
 			);
@@ -382,7 +405,7 @@
 		4C31CE4B1C302F1800C84AC4 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastUpgradeCheck = 0720;
+				LastUpgradeCheck = 0900;
 				ORGANIZATIONNAME = Michael;
 				TargetAttributes = {
 					4C31CE521C302F1800C84AC4 = {
@@ -462,6 +485,68 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		19EB2B18054B77937715898B /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Dictation-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		3E5C8406BCE9858F58380BDC /* [CP] Copy Pods Resources */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+			);
+			name = "[CP] Copy Pods Resources";
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dictation/Pods-Dictation-resources.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		529F023C64A8D4E033E7B15A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-Dictation/Pods-Dictation-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/AFNetworking/AFNetworking.framework",
+				"${BUILT_PRODUCTS_DIR}/AVOSCloud/AVOSCloud.framework",
+				"${BUILT_PRODUCTS_DIR}/MBProgressHUD/MBProgressHUD.framework",
+				"${BUILT_PRODUCTS_DIR}/RDVTabBarController/RDVTabBarController.framework",
+				"${BUILT_PRODUCTS_DIR}/SDWebImage/SDWebImage.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AFNetworking.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/AVOSCloud.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/MBProgressHUD.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/RDVTabBarController.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-Dictation/Pods-Dictation-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		4C31CE4F1C302F1800C84AC4 /* Sources */ = {
@@ -546,13 +631,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -577,6 +670,7 @@
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = YES;
 				ONLY_ACTIVE_ARCH = YES;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 			};
 			name = Debug;
@@ -589,13 +683,21 @@
 				CLANG_CXX_LIBRARY = "libc++";
 				CLANG_ENABLE_MODULES = YES;
 				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
 				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
 				CLANG_WARN_UNREACHABLE_CODE = YES;
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				"CODE_SIGN_IDENTITY[sdk=iphoneos*]" = "iPhone Developer";
@@ -613,6 +715,7 @@
 				GCC_WARN_UNUSED_VARIABLE = YES;
 				IPHONEOS_DEPLOYMENT_TARGET = 9.2;
 				MTL_ENABLE_DEBUG_INFO = NO;
+				OTHER_LDFLAGS = "$(inherited)";
 				SDKROOT = iphoneos;
 				VALIDATE_PRODUCT = YES;
 			};
@@ -620,6 +723,7 @@
 		};
 		4C31CE811C302F1900C84AC4 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = E5D89B5EA215E59DFB0C161A /* Pods-Dictation.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Developer";
@@ -645,6 +749,7 @@
 		};
 		4C31CE821C302F1900C84AC4 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 7051E352F4C24E381896C23E /* Pods-Dictation.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_IDENTITY = "iPhone Distribution: Xiaodong Cui (TGV2ER7UVL)";
