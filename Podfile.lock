@@ -14,7 +14,7 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
-  - AVOSCloud (7.2.0)
+  - AVOSCloud (7.3.0)
   - MBProgressHUD (1.0.0)
   - RDVTabBarController (1.1.9)
   - SDWebImage (4.1.0):
@@ -30,7 +30,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
-  AVOSCloud: 9f09a2a734fe980685866feded7f6129141e9336
+  AVOSCloud: f7a87203a36d64c4174012eebf7564bed646fdae
   MBProgressHUD: 4890f671c94e8a0f3cf959aa731e9de2f036d71a
   RDVTabBarController: 67794f7a7a37f8e32f046f85ac67d06ab92d624a
   SDWebImage: 0e435c14e402a6730315a0fb79f95e68654d55a4
