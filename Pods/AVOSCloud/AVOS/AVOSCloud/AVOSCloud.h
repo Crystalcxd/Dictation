@@ -59,7 +59,10 @@
 #import "AVCaptcha.h"
 #import "AVSMS.h"
 
-#if AV_IOS_ONLY && !TARGET_OS_WATCH
+// Router
+#import "LCRouter.h"
+
+#if TARGET_OS_IOS && !TARGET_OS_WATCH
 // Analytics
 #import "AVAnalytics.h"
 #endif

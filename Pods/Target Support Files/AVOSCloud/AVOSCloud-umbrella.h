@@ -38,6 +38,7 @@
 #import "AVUser.h"
 #import "AVLogger.h"
 #import "AVAvailability.h"
+#import "LCRouter.h"
 
 FOUNDATION_EXPORT double AVOSCloudVersionNumber;
 FOUNDATION_EXPORT const unsigned char AVOSCloudVersionString[];
