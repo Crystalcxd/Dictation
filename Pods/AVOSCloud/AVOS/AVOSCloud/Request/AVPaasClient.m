@@ -187,16 +187,17 @@ NSString *const LCHeaderFieldNameProduction = @"X-LC-Prod";
             LCURLSessionManager *manager = [[LCURLSessionManager alloc] initWithSessionConfiguration:configuration];
             manager.completionQueue = _completionQueue;
 
-#if LC_SSL_PINNING_ENABLED
-            [manager setSessionDidReceiveAuthenticationChallengeBlock:
-            ^NSURLSessionAuthChallengeDisposition(NSURLSession * _Nonnull session,
-                                                  NSURLAuthenticationChallenge * _Nonnull challenge,
-                                                  NSURLCredential *__autoreleasing  _Nullable * _Nullable credential)
-            {
-                [[LCSSLChallenger sharedInstance] acceptChallenge:challenge];
-                return NSURLSessionAuthChallengeUseCredential;
-            }];
-#endif
+            if ([AVOSCloud isSSLPinningEnabled]) {
+                
+                [manager setSessionDidReceiveAuthenticationChallengeBlock:
+                 ^NSURLSessionAuthChallengeDisposition(NSURLSession * _Nonnull session,
+                                                       NSURLAuthenticationChallenge * _Nonnull challenge,
+                                                       NSURLCredential *__autoreleasing  _Nullable * _Nullable credential)
+                 {
+                     [[LCSSLChallenger sharedInstance] acceptChallenge:challenge];
+                     return NSURLSessionAuthChallengeUseCredential;
+                 }];
+            }
 
             /* Remove all null value of result. */
             LCJSONResponseSerializer *responseSerializer = (LCJSONResponseSerializer *)manager.responseSerializer;
@@ -462,8 +463,7 @@ NSString *const LCHeaderFieldNameProduction = @"X-LC-Prod";
                 if (object[@"success"]) {
                     [results addObject:object[@"success"]];
                 } else if (object[@"error"]) {
-                    NSError *error = [AVErrorUtils errorFromJSON:object[@"error"]];
-                    [results addObject:error];
+                    [results addObject:object[@"error"]];
                 }
             }
             block(results, nil);
@@ -553,8 +553,8 @@ NSString *const LCHeaderFieldNameProduction = @"X-LC-Prod";
         @strongify(self);
 
         if (block) {
-            NSError *error = [AVErrorUtils errorFromJSON:responseObject];
-            block(responseObject, error);
+            
+            block(responseObject, nil);
         }
 
         if (self.isLastModifyEnabled && [request.HTTPMethod isEqualToString:@"GET"]) {
@@ -597,7 +597,7 @@ NSString *const LCHeaderFieldNameProduction = @"X-LC-Prod";
             }];
         } else {
             if (block)
-                block(responseObject, [AVErrorUtils errorFromJSON:responseObject] ?: error);
+                block(responseObject, error);
         }
     }];
 }
