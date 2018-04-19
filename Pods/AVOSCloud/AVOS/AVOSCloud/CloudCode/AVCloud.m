@@ -61,6 +61,7 @@
      failure:^(NSHTTPURLResponse *response, id responseObject, NSError *inError) {
 
          if (inError) {
+             
              error = inError;
          }
 
@@ -143,12 +144,6 @@
     [self rpcFunctionInBackground:function withParameters:parameters block:^(id object, NSError *error) {
         [AVUtils performSelectorIfCould:target selector:selector object:object object:error];
     }];
-}
-
-#pragma mark - Util
-
-+ (NSDictionary *)cloudDictionaryFromObject:(id)object {
-    return [AVObjectUtils dictionaryFromObject:object topObject:YES];
 }
 
 #pragma mark - Data from LeanEngine

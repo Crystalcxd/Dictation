@@ -8,10 +8,7 @@
 
 #import "AVOSCloud.h"
 #import "AVOSCloud_Internal.h"
-#import "AVConfiguration.h"
-#import "AVConfiguration_extension.h"
 #import "AVPaasClient.h"
-#import "AVUploaderManager.h"
 #import "AVScheduler.h"
 #import "AVPersistenceUtils.h"
 
@@ -36,7 +33,26 @@ AVServiceRegion LCEffectiveServiceRegion = AVServiceRegionDefault;
 
 static BOOL LCSSLPinningEnabled = false;
 
-@implementation AVOSCloud
+@implementation AVOSCloud {
+    
+    NSString *_applicationId;
+    
+    NSString *_applicationKey;
+}
+
++ (instancetype)sharedInstance
+{
+    static AVOSCloud *sharedInstance = nil;
+    
+    static dispatch_once_t onceToken;
+    
+    dispatch_once(&onceToken, ^{
+        
+        sharedInstance = [[AVOSCloud alloc] init];
+    });
+    
+    return sharedInstance;
+}
 
 + (void)setSSLPinningEnabled:(BOOL)enabled
 {
@@ -91,10 +107,8 @@ static BOOL LCSSLPinningEnabled = false;
 
 + (void)setApplicationId:(NSString *)applicationId clientKey:(NSString *)clientKey
 {
-    AVConfiguration *configuration = [AVConfiguration sharedInstance];
-
-    configuration.applicationId  = applicationId;
-    configuration.applicationKey = clientKey;
+    [AVOSCloud sharedInstance]->_applicationId = applicationId;
+    [AVOSCloud sharedInstance]->_applicationKey = clientKey;
 
     if (_verbosePolicy == kAVVerboseShow) {
         [self logApplicationInfo];
@@ -127,12 +141,12 @@ static BOOL LCSSLPinningEnabled = false;
 
 + (NSString *)getApplicationId
 {
-    return [AVConfiguration sharedInstance].applicationId;
+    return [AVOSCloud sharedInstance]->_applicationId;
 }
 
 + (NSString *)getClientKey
 {
-    return [AVConfiguration sharedInstance].applicationKey;
+    return [AVOSCloud sharedInstance]->_applicationKey;
 }
 
 + (void)setLastModifyEnabled:(BOOL)enabled{
@@ -152,22 +166,6 @@ static BOOL LCSSLPinningEnabled = false;
 
 + (void)setStorageType:(AVStorageType)storageType
 {
-    [AVUploaderManager sharedInstance].storageType = storageType;
-}
-
-+ (AVStorageType)storageTypeForServiceRegion:(AVServiceRegion)serviceRegion {
-    AVStorageType storageType = AVStorageTypeDefault;
-
-    switch (serviceRegion) {
-    case AVServiceRegionCN:
-        storageType = AVStorageTypeQiniu;
-        break;
-    case AVServiceRegionUS:
-        storageType = AVStorageTypeS3;
-        break;
-    }
-
-    return storageType;
 }
 
 + (NSString *)pushGroupForServiceRegion:(AVServiceRegion)serviceRegion {
@@ -195,11 +193,6 @@ static BOOL LCSSLPinningEnabled = false;
     }
 
     LCEffectiveServiceRegion = serviceRegion;
-
-    /* Setup file uploading service. */
-    [self setStorageType:[self storageTypeForServiceRegion:serviceRegion]];
-
-    [AVUploaderManager sharedInstance].serviceRegion = serviceRegion;
 }
 
 + (NSString *)stringFromServiceModule:(AVServiceModule)serviceModule {
@@ -411,12 +404,39 @@ static AVLogLevel avlogLevel = AVLogLevelDefault;
 #endif
 }
 
-+ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken constructingInstallationWithBlock:(void (^)(AVInstallation *))block {
-    AVInstallation *installation = [AVInstallation currentInstallation];
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+{
+    [self handleRemoteNotificationsWithDeviceToken:deviceToken
+                                            teamId:nil
+                 constructingInstallationWithBlock:nil];
+}
+
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+                                          teamId:(NSString *)teamId
+{
+    [self handleRemoteNotificationsWithDeviceToken:deviceToken
+                                            teamId:teamId
+                 constructingInstallationWithBlock:nil];
+}
+
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+               constructingInstallationWithBlock:(void (^)(AVInstallation *))block
+{
+    [self handleRemoteNotificationsWithDeviceToken:deviceToken
+                                            teamId:nil
+                 constructingInstallationWithBlock:block];
+}
+
++ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken
+                                          teamId:(NSString *)teamId
+               constructingInstallationWithBlock:(void (^)(AVInstallation *))block
+{
+    AVInstallation *installation = [AVInstallation defaultInstallation];
 
     @weakify(installation, weakInstallation);
 
-    [installation setDeviceTokenFromData:deviceToken];
+    [installation setDeviceTokenFromData:deviceToken
+                                  teamId:teamId];
 
     if (block) {
         block(installation);
@@ -429,10 +449,6 @@ static AVLogLevel avlogLevel = AVLogLevelDefault;
             AVLoggerInfo(AVLoggerDomainIM, @"Installation saved OK, object id: %@.", weakInstallation.objectId);
         }
     }];
-}
-
-+ (void)handleRemoteNotificationsWithDeviceToken:(NSData *)deviceToken {
-    [self handleRemoteNotificationsWithDeviceToken:deviceToken constructingInstallationWithBlock:nil];
 }
 
 @end

@@ -254,7 +254,8 @@ NSString * const kAVStatusTypePrivateMessage=@"private";
     [[AVPaasClient sharedInstance] getObject:[NSString stringWithFormat:@"statuses/%@",objectId] withParameters:@{@"owner":owner,@"include":@"source"} block:^(id object, NSError *error) {
         
         if (!error) {
-            object=[self statusFromCloudData:object];
+            
+            object = [self statusFromCloudData:object];
         }
         
         [AVUtils callIdResultBlock:callback object:object error:error];
@@ -329,7 +330,6 @@ NSString * const kAVStatusTypePrivateMessage=@"private";
     
     [[AVPaasClient sharedInstance] getObject:@"subscribe/statuses/count" withParameters:@{@"owner":owner,@"inboxType":type} block:^(id object, NSError *error) {
         NSUInteger count=[object[@"unread"] integerValue];
-
         [AVUtils callIntegerResultBlock:callback number:count error:error];
     }];
 }

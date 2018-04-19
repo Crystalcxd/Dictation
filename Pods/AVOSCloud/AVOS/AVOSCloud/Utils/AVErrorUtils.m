@@ -121,50 +121,39 @@ NSInteger const kAVErrorFileDataNotAvailable = 401;
 
 @implementation AVErrorUtils
 
-+(NSError *)errorWithCode:(NSInteger)code
++ (NSError *)errorWithCode:(NSInteger)code
 {
-    return [NSError errorWithDomain:kAVErrorDomain code:code userInfo:nil];
+    return [NSError errorWithDomain:kAVErrorDomain
+                               code:code
+                           userInfo:nil];
 }
 
-+ (NSError *)errorWithText:(NSString *)text {
-    return [self errorWithCode:0 errorText:text];
++ (NSError *)errorWithText:(NSString *)text
+{
+    return [self errorWithCode:0
+                     errorText:text];
 }
 
-+(NSError *)errorWithCode:(NSInteger)code errorText:(NSString *)text {
-    if (!code) {
-        code = 0;
-    }
-    
-    NSString *localizedString = NSLocalizedString(text, nil);
-    
++ (NSError *)errorWithCode:(NSInteger)code
+                 errorText:(NSString *)text
+{
     NSDictionary *errorInfo = @{
                                 @"code" : @(code),
-                                @"error" : text, //???: should we remove this key
-                                NSLocalizedDescriptionKey : localizedString //TODO: add localized error descriptions
+                                @"error" : text
                                 };
     
-    NSError *err= [NSError errorWithDomain:kAVErrorDomain
-                               code:code
-                           userInfo:errorInfo];
+    NSError *err = [NSError errorWithDomain:kAVErrorDomain
+                                       code:code
+                                   userInfo:errorInfo];
     
     return err;
 }
 
-+(NSError *)internalServerError
++ (NSError *)internalServerError
 {
-    return [NSError errorWithDomain:kAVErrorDomain code:kAVErrorInternalServer userInfo:nil];
-}
-
-+(NSError *)fileNotFoundError
-{
-    NSError *error = [AVErrorUtils errorWithCode:kAVErrorFileNotFound errorText:@"File not found."];
-    return error;
-}
-
-+(NSError *)dataNotAvailableError
-{
-    NSError * error = [AVErrorUtils errorWithCode:kAVErrorFileDataNotAvailable errorText:@"File data not available."];
-    return error;
+    return [NSError errorWithDomain:kAVErrorDomain
+                               code:kAVErrorInternalServer
+                           userInfo:nil];
 }
 
 @end
