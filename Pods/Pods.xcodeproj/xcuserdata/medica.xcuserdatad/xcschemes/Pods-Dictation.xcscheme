@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Scheme
-   LastUpgradeVersion = "0930"
+   LastUpgradeVersion = "1100"
    version = "1.3">
    <BuildAction
       parallelizeBuildables = "YES"
@@ -14,10 +14,10 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = "primary"
-               BlueprintIdentifier = "554AE7D562BAB2F57948986C9C8B83AB"
+               BlueprintIdentifier = "D222E5F70185C4EC05A102992C107571"
+               BuildableName = "Pods-Dictation.framework"
                BlueprintName = "Pods-Dictation"
-               ReferencedContainer = "container:Pods.xcodeproj"
-               BuildableName = "Pods-Dictation.framework">
+               ReferencedContainer = "container:Pods.xcodeproj">
             </BuildableReference>
          </BuildActionEntry>
       </BuildActionEntries>
