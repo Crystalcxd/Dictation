@@ -86,6 +86,11 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     return [[AVFile alloc] initWithRawJSONData:[avObject dictionaryForObject]];
 }
 
++ (instancetype)fileWithObjectId:(NSString *)objectId url:(NSString *)url
+{
+    return [[AVFile alloc] initWithRawJSONData:@{kLCFile_objectId: objectId, kLCFile_url: url}.mutableCopy];
+}
+
 // MARK: - Initialization
 
 - (instancetype)init
@@ -332,7 +337,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     [self internalSyncLock:^{
         
-        ACL = _ACL;
+        ACL = self->_ACL;
     }];
     
     return ACL;
@@ -344,15 +349,15 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     [self internalSyncLock:^{
         
-        _ACL = ACL;
+        self->_ACL = ACL;
         
         if (ACL) {
             
-            _rawJSONData[ACLTag] = ACLDic;
+            self->_rawJSONData[ACLTag] = ACLDic;
             
         } else {
             
-            [_rawJSONData removeObjectForKey:ACLTag];
+            [self->_rawJSONData removeObjectForKey:ACLTag];
         }
     }];
 }
@@ -363,7 +368,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     [self internalSyncLock:^{
         
-        dic = _uploadingHeaders;
+        dic = self->_uploadingHeaders;
     }];
 
     return dic;
@@ -373,7 +378,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
 {
     [self internalSyncLock:^{
         
-        _uploadingHeaders = [uploadingHeaders copy];
+        self->_uploadingHeaders = [uploadingHeaders copy];
     }];
 }
 
@@ -383,7 +388,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     [self internalSyncLock:^{
         
-        name = [NSString lc__decodingWithKey:kLCFile_name fromDic:_rawJSONData];
+        name = [NSString lc__decodingWithKey:kLCFile_name fromDic:self->_rawJSONData];
     }];
     
     return name;
@@ -395,7 +400,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     [self internalSyncLock:^{
         
-        objectId = [AVFile decodingObjectIdFromDic:_rawJSONData];
+        objectId = [AVFile decodingObjectIdFromDic:self->_rawJSONData];
     }];
     
     return objectId;
@@ -407,7 +412,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
 
     [self internalSyncLock:^{
         
-        url = [NSString lc__decodingWithKey:kLCFile_url fromDic:_rawJSONData];
+        url = [NSString lc__decodingWithKey:kLCFile_url fromDic:self->_rawJSONData];
     }];
 
     return url;
@@ -419,7 +424,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
 
     [self internalSyncLock:^{
         
-        metaData = [AVFile decodingMetaDataFromDic:_rawJSONData];
+        metaData = [AVFile decodingMetaDataFromDic:self->_rawJSONData];
     }];
     
     return metaData;
@@ -429,7 +434,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
 {
     [self internalSyncLock:^{
         
-        _rawJSONData[kLCFile_metaData] = metaData;
+        self->_rawJSONData[kLCFile_metaData] = metaData;
     }];
 }
 
@@ -444,7 +449,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
 {
     [self internalSyncLock:^{
         
-        NSMutableDictionary *metaData = [[AVFile decodingMetaDataFromDic:_rawJSONData] mutableCopy];
+        NSMutableDictionary *metaData = [[AVFile decodingMetaDataFromDic:self->_rawJSONData] mutableCopy];
         
         if (metaData) {
             
@@ -457,11 +462,11 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
                 [metaData removeObjectForKey:kLCFile_owner];
             }
             
-            _rawJSONData[kLCFile_metaData] = [metaData copy];
+            self->_rawJSONData[kLCFile_metaData] = [metaData copy];
         }
         else if (ownerId) {
             
-            _rawJSONData[kLCFile_metaData] = @{ kLCFile_owner : ownerId };
+            self->_rawJSONData[kLCFile_metaData] = @{ kLCFile_owner : ownerId };
         }
     }];
 }
@@ -477,7 +482,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
 {
     [self internalSyncLock:^{
         
-        NSMutableDictionary *metaData = [[AVFile decodingMetaDataFromDic:_rawJSONData] mutableCopy];
+        NSMutableDictionary *metaData = [[AVFile decodingMetaDataFromDic:self->_rawJSONData] mutableCopy];
         
         if (metaData) {
             
@@ -490,11 +495,11 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
                 [metaData removeObjectForKey:kLCFile__checksum];
             }
             
-            _rawJSONData[kLCFile_metaData] = [metaData copy];
+            self->_rawJSONData[kLCFile_metaData] = [metaData copy];
         }
         else if (checksum) {
             
-            _rawJSONData[kLCFile_metaData] = @{ kLCFile__checksum : checksum };
+            self->_rawJSONData[kLCFile_metaData] = @{ kLCFile__checksum : checksum };
         }
     }];
 }
@@ -524,7 +529,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     [self internalSyncLock:^{
         
-        mimeType = [NSString lc__decodingWithKey:kLCFile_mime_type fromDic:_rawJSONData];
+        mimeType = [NSString lc__decodingWithKey:kLCFile_mime_type fromDic:self->_rawJSONData];
     }];
     
     return mimeType;
@@ -536,7 +541,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     [self internalSyncLock:^{
         
-        value = [_rawJSONData objectForKey:key];
+        value = [self->_rawJSONData objectForKey:key];
     }];
     
     return value;
@@ -548,7 +553,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     [self internalSyncLock:^{
         
-        dic = _rawJSONData.copy;
+        dic = self->_rawJSONData.copy;
     }];
     
     return dic;
@@ -560,7 +565,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     [self internalSyncLock:^{
         
-        dic = _rawJSONData.mutableCopy;
+        dic = self->_rawJSONData.mutableCopy;
     }];
     
     return dic;
@@ -603,10 +608,10 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
         
         __block BOOL isUploading = false;
         [self internalSyncLock:^{
-            if (_uploadOption) {
+            if (self->_uploadOption) {
                 isUploading = true;
             } else {
-                _uploadOption = @(uploadOption);
+                self->_uploadOption = @(uploadOption);
             }
         }];
         isUploading;
@@ -644,8 +649,8 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
                 
                 __block AVFileUploadOption uploadOption = 0;
                 [self internalSyncLock:^{
-                    uploadOption = [_uploadOption unsignedIntegerValue];
-                    _uploadOption = nil;
+                    uploadOption = [self->_uploadOption unsignedIntegerValue];
+                    self->_uploadOption = nil;
                 }];
                 uploadOption;
             });
@@ -714,7 +719,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
         [self uploadRemoteURLWithCompletionHandler:^(BOOL succeeded, NSError *error) {
             
             [self internalSyncLock:^{
-                _uploadOption = nil;
+                self->_uploadOption = nil;
             }];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -731,7 +736,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     dispatch_async(dispatch_get_main_queue(), ^{
         
         [self internalSyncLock:^{
-            _uploadOption = nil;
+            self->_uploadOption = nil;
         }];
         
         completionHandler(false, ({
@@ -750,7 +755,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
         
         __block NSMutableDictionary *mutableDic = nil;
         [self internalSyncLock:^{
-            mutableDic = _rawJSONData.mutableCopy;
+            mutableDic = self->_rawJSONData.mutableCopy;
         }];
         mutableDic[kLCFile_key] = ({
             NSString *key = AVFile_CompactUUID();
@@ -787,7 +792,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
             void(^completionHandler_block)(BOOL success, NSError *error) = ^(BOOL success, NSError *error) {
                 
                 [self internalSyncLock:^{
-                    _uploadTask = nil;
+                    self->_uploadTask = nil;
                 }];
                 
                 void(^fileCallback_block)(BOOL succeeded) = ^(BOOL succeeded) {
@@ -808,7 +813,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
                 fileCallback_block(true);
                 [mutableParameters addEntriesFromDictionary:fileTokens.rawDic];
                 [self internalSyncLock:^{
-                    _rawJSONData = mutableParameters;
+                    self->_rawJSONData = mutableParameters;
                 }];
                 
                 completionHandler(true, nil);
@@ -837,7 +842,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
         if (task) {
             
             [self internalSyncLock:^{
-                _uploadTask = task;
+                self->_uploadTask = task;
             }];
             [task resume];
         }
@@ -850,7 +855,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
         
         __block NSMutableDictionary *mutableDic = nil;
         [self internalSyncLock:^{
-            mutableDic = [_rawJSONData mutableCopy];
+            mutableDic = [self->_rawJSONData mutableCopy];
         }];
         mutableDic;
     });
@@ -874,7 +879,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
         
         [mutableParameters addEntriesFromDictionary:(NSDictionary *)object];
         [self internalSyncLock:^{
-            _rawJSONData = mutableParameters;
+            self->_rawJSONData = mutableParameters;
         }];
         
         completionHandler(true, nil);
@@ -932,7 +937,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
         
         __block NSURLSessionDownloadTask *task = nil;
         [self internalSyncLock:^{
-            task = _downloadTask;
+            task = self->_downloadTask;
         }];
         task;
     });
@@ -1024,7 +1029,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
         } progress:progress completionHandler:^(NSURL *filePath, NSError *error) {
             
             [self internalSyncLock:^{
-                _downloadTask = nil;
+                self->_downloadTask = nil;
             }];
             
             dispatch_async(dispatch_get_main_queue(), ^{
@@ -1035,7 +1040,7 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
     
     if (task) {
         [self internalSyncLock:^{
-            _downloadTask = task;
+            self->_downloadTask = task;
         }];
         [task resume];
     }
@@ -1046,20 +1051,20 @@ static NSString * AVFile_ObjectPath(NSString *objectId)
 - (void)cancelUploading
 {
     [self internalSyncLock:^{
-        if (_uploadTask) {
-            [_uploadTask cancel];
-            _uploadTask = nil;
+        if (self->_uploadTask) {
+            [self->_uploadTask cancel];
+            self->_uploadTask = nil;
         }
-        _uploadOption = nil;
+        self->_uploadOption = nil;
     }];
 }
 
 - (void)cancelDownloading
 {
     [self internalSyncLock:^{
-        if (_downloadTask) {
-            [_downloadTask cancel];
-            _downloadTask = nil;
+        if (self->_downloadTask) {
+            [self->_downloadTask cancel];
+            self->_downloadTask = nil;
         }
     }];
 }
