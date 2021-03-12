@@ -9,7 +9,6 @@
 #import <Foundation/Foundation.h>
 #import "AVConstants.h"
 #import "AVACL.h"
-#import "AVOSCloud.h"
 #import "UserAgent.h"
 
 static NSString *const USER_AGENT = @"LeanCloud-Objc-SDK/" SDK_VERSION;
@@ -41,8 +40,10 @@ FOUNDATION_EXPORT NSString *const LCHeaderFieldNameProduction;
 // only for cloud code yet
 @property (nonatomic, assign) BOOL productionMode;
 
-
 @property (nonatomic, assign) BOOL isLastModifyEnabled;
+
+@property (nonatomic, strong) NSLock *lock;
+
 -(void)clearLastModifyCache;
 
 - (AVACL *)updatedDefaultACL;
